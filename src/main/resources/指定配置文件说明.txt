@@ -1,0 +1,22 @@
+*如果我们想更改默认配置文件的名称，不叫application，改成我们自定义的名称，此时启动方式有：
+    1、运行时，指定arguments: --spring.config.name=app.  app-文件名，可不用写扩展名
+    2、在配置文件中添加属性： 全路径(包括路径和文件名以及扩展名)，可以指定多个，以","隔开
+       spring.config.location=classpath:config/application.properties
+*指定配置文件的路径：
+    运行时，指定arguments:--spring.config.location=classpath:conf/app-conf.properties.
+    还可以指定多个，以","隔开.例如--spring.config.location=file:/E:/temp/tomcat.properties,classpath:conf/app-conf.properties
+    如果这多个配置文件中有同名的属性，则后加载的配置文件中的属性值会覆盖前面的。
+
+*加载配置文件中的属性，还可以通过@propertySource注解。
+
+    /*
+   读取特定环境的配置文件
+   此处设置dev，则会读取classpath下文件名为application-dev.properties或者application-dev.yml文件
+
+   或者在启动时，指定arguments：--spring.profiles.active=dev.
+   或者在application.properties默认配置文件中添加属性：--spring.profiles.active=dev
+    */
+    springApplication.setAdditionalProfiles("test");
+
+* springboot默认配置文件名：application.properties或者application.yml
+                   等同于 application-default.properties或者application-default.yml
